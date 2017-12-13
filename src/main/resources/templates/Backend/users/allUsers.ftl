@@ -19,12 +19,11 @@
                 </div>
                 <div class="clearfix"></div>
                 <!--ADD CONTENT HERE-->
-                <div class="row">
+                <div class="row col-md-12">
                 <#include "/Backend/users/_usersForm.ftl">
+                </div>
+                <div class="row col-md-12">
                 <#include "/Backend/users/_usersTable.ftl">
-
-
-
                 </div>
             </div>
         </div>

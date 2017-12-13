@@ -1,4 +1,4 @@
-<div class="col-md-8 col-sm-6 col-xs-12">
+<div class="col-md-12 col-sm-6 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
             <h2><@spring.message "uList" /></h2>

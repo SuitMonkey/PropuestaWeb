@@ -52,6 +52,13 @@ public class StoreFrontController {
         if(!RDS.isUserLoggedIn())
             return new ModelAndView("redirect:/login");
 
+        if(RDS.getCurrentLoggedUser() != null)
+            model.addAttribute("shoppingCart", RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail()).getShoppingCart());
+        else
+            model.addAttribute("shoppingCart", new HashSet<Product>()); // empty cart
+
+        model.addAttribute("selection", RDS.findAllRegisteredProducts());
+
         return new ModelAndView("StoreFront/account");
     }
 
