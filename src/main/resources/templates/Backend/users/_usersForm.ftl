@@ -1,4 +1,5 @@
-<div class="col-md-4 col-xs-12">
+
+<div class="col-md-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
             <h2><@spring.message "uform" /></h2>
@@ -88,8 +89,12 @@
                         <div class="radio">
                             <label><input type="radio" name="role" id="role2"  value="USER">USER</label>
                         </div>
+                        <div class="radio">
+                            <label><input type="radio" name="role" id="role3"  value="STORAGE">STORAGE</label>
+                        </div>
                     </div>
                 </div>
+
 
                 <div class="ln_solid"></div>
                 <div class="form-group">
