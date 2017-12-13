@@ -21,7 +21,7 @@ public class Product implements Serializable {
     private Float productPrice;
     @NotNull
     private Integer productInStock;
-    @Column(length = 5000000)
+    @Column(columnDefinition = "TEXT")
     private Byte[] photo;
 
     // Constructors

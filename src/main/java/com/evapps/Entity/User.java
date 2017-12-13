@@ -20,7 +20,7 @@ public class User implements Serializable{
     @NotNull
     private String lastName;
     @NotNull
-    @Column(length = 1000)
+    @Column(columnDefinition = "TEXT")
     private String shippingAddress;
     @NotNull
     private String country;
@@ -32,7 +32,7 @@ public class User implements Serializable{
     private Permission role;
     @NotNull
     private AccountStatus status;
-    @Column(length = 5000000)
+    @Column(columnDefinition = "TEXT")
     private Byte[] photo;
 
 

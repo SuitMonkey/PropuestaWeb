@@ -169,7 +169,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/users";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/register_page"; // TODO: Add error message
@@ -200,7 +200,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/inventory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/inventory"; // TODO: Add error handling
@@ -234,7 +234,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/inventory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/inventory"; // TODO: Add error handling
@@ -253,7 +253,7 @@ public class AdminController implements ErrorController {
             DDS.deleteRegisteredProduct(productId);
             return "redirect:/admin/inventory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/inventory"; // TODO: Add error handling
@@ -275,7 +275,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/inventory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/inventory"; // TODO: Add error handling
@@ -300,7 +300,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/transactions";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/transactions"; // TODO: Add error handling
@@ -322,7 +322,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/inventory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/inventory"; // TODO: Add error handling
@@ -346,7 +346,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/users";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/users"; // TODO: Add error handling
@@ -372,7 +372,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/users";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/users"; // TODO: Add error handling
@@ -394,7 +394,7 @@ public class AdminController implements ErrorController {
 
             return "redirect:/admin/users";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/admin/users"; // TODO: Add error handling
