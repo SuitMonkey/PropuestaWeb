@@ -22,15 +22,15 @@
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="form1" target="_blank" style="display: none; opacity: 0;">
 
     <!-- Identify your business so that you can collect the payments. -->
-    <input type="hidden" name="business" value="eduardo.storm-facilitator@gmail.com">
+    <input type="hidden" name="business" value="jesus9528-facilitator@hotmail.com">
 
     <!-- Specify a Buy Now button. -->
     <input type="hidden" name="cmd" value="_xclick">
 
     <!-- Specify details about the item that buyers will purchase. -->
-    <input type="hidden" name="item_name" value="Amazon Platano Stuff">
+    <input type="hidden" name="item_name" value="Atlantic Shop Stuff">
     <input type="hidden" name="amount" value="${total}">
-    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="currency_code" value="DOP">
     <input type="hidden" value="localhost:8090/download_pdf" name="return">
     <input type="hidden" name="custom" value=""/>
     <input type="hidden" name="notify_url" value="localhost:8090/products>

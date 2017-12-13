@@ -81,9 +81,28 @@
                                     </figcaption>
                                 </figure>
                                 <div class="aa-product-hvr-content">
-                                    <a href="/one_click/quick_buy/${product.getProductId()}" data-toggle="tooltip" data-placement="top" title="Buy Now"><span
+                                    <FORM id="form${product.getProductId()}" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                        <INPUT TYPE="hidden" name="cmd" value="_xclick">
+                                        <INPUT TYPE="hidden" name="business" value="jesus9528-facilitator@hotmail.com">
+                                        <INPUT TYPE="hidden" name="currency_code" value="USD">
+                                        <INPUT TYPE="hidden" name="return" value="http://localhost:8090/pago/success">
+                                        <INPUT TYPE="hidden" name="cancel_return" value="http://localhost:8090/pago/cancel">
+                                        <INPUT TYPE="hidden" name="item_name" value="${product.getProductName()}">
+                                        <INPUT TYPE="hidden" name="rm" value="2">
+                                        <INPUT TYPE="hidden" name="amount" value="${product.getProductPrice()}">
+                                        <a id="submit${product.getProductId()}" href="#" data-toggle="tooltip" data-placement="top" title="Buy Now"><span
                                             class="fa fa-shopping-cart"></span></a>
-
+                                    </FORM>
+                                    <script>
+                                        document.getElementById("submit${product.getProductId()}").onclick = function() {
+                                            document.getElementById("form${product.getProductId()}").submit();
+                                        }
+                                    </script>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span
+                                            class="fa fa-exchange"></span></a>
+                                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View"
+                                       data-toggle="modal" data-target="#quick-view-modal"><span
+                                            class="fa fa-search"></span></a>
                                 </div>
                                 <!-- product badge -->
                                 <span class="aa-badge aa-sale" href="#">SALE!</span>

@@ -85,7 +85,7 @@
                    </tr>
                  </tbody>
                </table>
-               <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+               <a href="/checkout" class="aa-cart-view-btn">Proced to Checkout</a>
              </div>
            </div>
           <#else >
