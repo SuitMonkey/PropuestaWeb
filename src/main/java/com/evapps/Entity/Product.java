@@ -1,6 +1,8 @@
 
 package com.evapps.Entity;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -21,7 +23,7 @@ public class Product implements Serializable {
     private Float productPrice;
     @NotNull
     private Integer productInStock;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "bytea")
     private Byte[] photo;
 
     // Constructors
@@ -86,8 +88,12 @@ public class Product implements Serializable {
         this.supplier = supplier;
     }
 
-    public Byte[] getPhoto() {
-        return photo;
+    public String getPhoto() {
+        if(this.photo == null)
+            return null;
+
+        byte[] imgBytesAsBase64 = Base64.encodeBase64(toPrimitives(this.photo));
+        return new String(imgBytesAsBase64);
     }
 
     public void setPhoto(Byte[] photo) {

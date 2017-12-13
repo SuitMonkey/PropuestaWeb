@@ -405,8 +405,7 @@ public class AdminController implements ErrorController {
         Byte[] bytes = new Byte[buffer.length];
         int i = 0;
 
-        for (byte b :
-                buffer)
+        for (byte b : buffer)
             bytes[i++] = b; // Autoboxing
 
         return bytes;
