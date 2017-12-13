@@ -114,6 +114,7 @@ public class AccessController {
             final OutputStream outputStream = response.getOutputStream();
             JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
         } catch (Exception exp){
+            exp.printStackTrace();
             System.out.println(exp.getMessage());
         }
     }
@@ -161,7 +162,7 @@ public class AccessController {
 
             return "redirect:/profile";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/profile"; // TODO: Add error message
@@ -199,7 +200,7 @@ public class AccessController {
 
             return "redirect:/profile";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/profile"; // TODO: Add error message
@@ -218,7 +219,7 @@ public class AccessController {
 
             return "redirect:/profile";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/profile"; // TODO: Add error message
@@ -239,7 +240,7 @@ public class AccessController {
 
             return "redirect:/profile";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/profile"; // TODO: Add error message
@@ -258,7 +259,7 @@ public class AccessController {
 
             return "redirect:/profile";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/profile"; // TODO: Add error message
@@ -281,8 +282,7 @@ public class AccessController {
             Float total = 0.00f;
             int count = 0;
 
-            for (Product product:
-                    shoppingCart) {
+            for (Product product: shoppingCart) {
                 if (product.getProductInStock() > 0){
                     // Saving transaction registry
                     productList.add(product.getProductId());
@@ -305,7 +305,7 @@ public class AccessController {
 
             //return "redirect:/myHistory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/myHistory"; // TODO: Add error message
@@ -338,7 +338,7 @@ public class AccessController {
 
             return "redirect:/myHistory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/myHistory"; // TODO: Add error message
@@ -357,7 +357,7 @@ public class AccessController {
 
             return "redirect:/myHistory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/myHistory"; // TODO: Add error message
@@ -390,7 +390,7 @@ public class AccessController {
 
             return "redirect:/myHistory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/myHistory"; // TODO: Add error message
@@ -413,7 +413,7 @@ public class AccessController {
 
             return "redirect:/myHistory";
         } catch (Exception exp){
-            //
+            exp.printStackTrace();
         }
 
         return "redirect:/myHistory"; // TODO: Add error message

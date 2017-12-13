@@ -56,7 +56,7 @@
                     <div class="aa-product-catg-body">
                         <ul class="aa-product-catg">
                             <!-- start single product item -->
-                        <#list selection as product>
+                        <#list selection?sort_by("product_id") as product>
                             <li>
                                 <figure>
                                     <form method="post" action="/add_to_cart" name="add-to-cart" id="add-to-cart${product.getProductId()}">

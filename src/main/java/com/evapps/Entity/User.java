@@ -32,7 +32,7 @@ public class User implements Serializable{
     private Permission role;
     @NotNull
     private AccountStatus status;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "bytea")
     private Byte[] photo;
 
 
@@ -96,20 +96,16 @@ public class User implements Serializable{
         this.role = role;
     }
 
-    public Byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Byte[] photo) {
-        this.photo = photo;
-    }
-
-    public String displayPhoto(){
+    public String getPhoto() {
         if(this.photo == null)
             return null;
 
         byte[] imgBytesAsBase64 = Base64.encodeBase64(toPrimitives(this.photo));
         return new String(imgBytesAsBase64);
+    }
+
+    public void setPhoto(Byte[] photo) {
+        this.photo = photo;
     }
 
     // Auxiliary Function
