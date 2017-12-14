@@ -62,8 +62,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="form-group item">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password"><@spring.message "password" /> <span class="required">*</span>
                     </label><br>
@@ -86,18 +84,14 @@
                 </div>
 
 
-                <div class="form-group item" style="display: none"  id="RNCblock">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address"><@spring.message "RNC" /> <span class="required">*</span>
+                <div class="form-group item">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="RNC"><@spring.message "RNC" /> <span class="required">*</span>
                     </label><br>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" id="RNC" name="RNC" required="required" class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
-<script>
-    $("#valorFiscal").on('change',function () {
-        $("#RNCblock").toggle();    
-    });
-</script>
+
                 <div class="form-group item">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12"><@spring.message "role" /> <span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6 col-xs-12">

@@ -56,7 +56,7 @@ public class User implements Serializable{
         this.setStatus(AccountStatus.SUSPENDED); // Changes once receive confirmation email
     }
 
-    public User(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission role, AccountStatus status, Byte[] photo, String id, boolean rnc) {
+    public User(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission role, AccountStatus status, String id, boolean rnc) {
         this.setEmail(email.toLowerCase());
         this.setFirstName(firstName.toLowerCase());
         this.setLastName(lastName.toUpperCase());

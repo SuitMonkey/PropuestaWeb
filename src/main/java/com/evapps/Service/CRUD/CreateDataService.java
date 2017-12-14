@@ -11,6 +11,7 @@ import com.evapps.Repository.ReceiptRepository;
 import com.evapps.Repository.UserRepository;
 import com.evapps.Service.Auxiliary.EmailService;
 import com.evapps.Service.Auxiliary.EncryptionService;
+import com.evapps.Tools.Enums.AccountStatus;
 import com.evapps.Tools.Enums.Permission;
 import freemarker.template.utility.NullArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,13 +101,13 @@ public class CreateDataService
     }
 
     // User and History Creation
-    public User registerNewUser(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission permission) throws Exception{
+    public User registerNewUser(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission permission, String id, boolean valorF) throws Exception{
 
         if (isEmailAddressTaken(email))
             throw new IllegalArgumentException("This user Account already exist");
 
         try {
-            User user = userRepository.save(new User(email, firstName, lastName,  shippingAddress, country, city,password, permission));
+            User user = userRepository.save(new User(email, firstName, lastName,  shippingAddress, country, city,password, permission, AccountStatus.SUSPENDED,id,valorF));
             historyRepository.save(new History(user)); // Creating the users history
             EmailService es = new EmailService();
             es.sendUserRegistrationConfirmation(user);

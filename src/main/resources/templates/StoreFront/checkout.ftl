@@ -30,7 +30,7 @@
     <!-- Specify details about the item that buyers will purchase. -->
     <input type="hidden" name="item_name" value="Atlantic Shop Stuff">
     <input type="hidden" name="amount" value="${total}">
-    <input type="hidden" name="currency_code" value="DOP">
+    <input type="hidden" name="currency_code" value="USD">
     <input type="hidden" value="localhost:8090/download_pdf" name="return">
     <input type="hidden" name="custom" value=""/>
     <input type="hidden" name="notify_url" value="localhost:8090/products>
