@@ -35,6 +35,9 @@ public class User implements Serializable{
     @Column(columnDefinition = "bytea")
     private Byte[] photo;
 
+    private String id;
+    private boolean rnc;
+
 
     // Constructors
     public User(){
@@ -51,6 +54,20 @@ public class User implements Serializable{
         this.setPassword(password);
         this.setRole(role);
         this.setStatus(AccountStatus.SUSPENDED); // Changes once receive confirmation email
+    }
+
+    public User(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission role, AccountStatus status, Byte[] photo, String id, boolean rnc) {
+        this.setEmail(email.toLowerCase());
+        this.setFirstName(firstName.toLowerCase());
+        this.setLastName(lastName.toUpperCase());
+        this.setShippingAddress(shippingAddress);
+        this.setCountry(country);
+        this.setCity(city);
+        this.setPassword(password);
+        this.setRole(role);
+        this.setStatus(AccountStatus.SUSPENDED); // Changes once receive confirmation email
+        this.setId(id);
+        this.setRnc(rnc);
     }
 
     //Getters and Setters
@@ -148,5 +165,21 @@ public class User implements Serializable{
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isRnc() {
+        return rnc;
+    }
+
+    public void setRnc(boolean rnc) {
+        this.rnc = rnc;
     }
 }
