@@ -99,6 +99,7 @@ public class StoreFrontController {
         else
             model.addAttribute("shoppingCart", new HashSet<Product>()); // empty cart
 
+
         model.addAttribute("selection", RDS.findAllRegisteredProducts());
 
         return new ModelAndView("StoreFront/product_list/product");
