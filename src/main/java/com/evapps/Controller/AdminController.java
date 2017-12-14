@@ -143,7 +143,7 @@ public class AdminController implements ErrorController {
     }
 
     // Posts
-    @PostMapping("/register")
+    @PostMapping("/admin/users")
     public String register(@RequestParam("email") String email, @RequestParam("first") String firstName, @RequestParam("last") String lastName, @RequestParam("address") String shippingAddress,@RequestParam("state") String city, @RequestParam("country") String country,@RequestParam("password") String password, @RequestParam("role") String role,@RequestParam("RNC") String rnc,@RequestParam("valorFiscal") String valorF){
         System.out.println(valorF);
         if(!RDS.isUserLoggedIn())
