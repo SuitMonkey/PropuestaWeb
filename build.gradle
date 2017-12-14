@@ -70,7 +70,7 @@ dependencies {
 	compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1211.jre7'
 	compile("org.springframework.boot:spring-boot-devtools")
 	// https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java
-	compile 'com.sendgrid:sendgrid-java:3.1.0'
+	compile 'com.sendgrid:sendgrid-java:4.0.1'
 	compile 'com.amazonaws:aws-java-sdk-s3'
 	// https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
 	compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.4.0'

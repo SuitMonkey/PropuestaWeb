@@ -34,6 +34,8 @@ public class CreateDataService
     private UserRepository userRepository;
     @Autowired
     private EncryptionService encryptionService;
+    @Autowired
+    private EmailService emailService;
 
     // Product Creation
     public Product registerNewProduct(String productName, String supplier, String productDescription, Float productPrice, Integer productInStock) throws Exception{
@@ -109,8 +111,7 @@ public class CreateDataService
         try {
             User user = userRepository.save(new User(email, firstName, lastName,  shippingAddress, country, city,password, permission, AccountStatus.ACTIVE,id,valorF));
             historyRepository.save(new History(user)); // Creating the users history
-            EmailService es = new EmailService();
-            es.sendUserRegistrationConfirmation(user);
+            emailService.sendUserRegistrationConfirmation(user);
             return user;
         } catch (PersistenceException exp){
             throw new PersistenceException("Persistence Error --> " + exp.getMessage());
