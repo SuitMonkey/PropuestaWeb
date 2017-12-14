@@ -144,8 +144,8 @@ public class AdminController implements ErrorController {
 
     // Posts
     @PostMapping("/register")
-    public String register(@RequestParam("email") String email, @RequestParam("first") String firstName, @RequestParam("last") String lastName, @RequestParam("address") String shippingAddress,@RequestParam("state") String city, @RequestParam("country") String country,@RequestParam("password") String password, @RequestParam("role") String role){
-
+    public String register(@RequestParam("email") String email, @RequestParam("first") String firstName, @RequestParam("last") String lastName, @RequestParam("address") String shippingAddress,@RequestParam("state") String city, @RequestParam("country") String country,@RequestParam("password") String password, @RequestParam("role") String role,@RequestParam("RNC") String rnc,@RequestParam("valorFiscal") String valorF){
+        System.out.println(valorF);
         if(!RDS.isUserLoggedIn())
             return "redirect:/login";
 
@@ -163,7 +163,7 @@ public class AdminController implements ErrorController {
         }
 
         try {
-            CDS.registerNewUser(email.toLowerCase(), firstName.toLowerCase(), lastName.toLowerCase(), shippingAddress,country,city, password,per );
+            CDS.registerNewUser(email.toLowerCase(), firstName.toLowerCase(), lastName.toLowerCase(), shippingAddress,country,city, password,per,rnc,true);
 
             // TODO: Send confirmation email
 
@@ -172,13 +172,13 @@ public class AdminController implements ErrorController {
             exp.printStackTrace();
         }
 
-        return "redirect:/register_page"; // TODO: Add error message
+        return "redirect:/admin/users"; // TODO: Add error message
     }
 
     @PostMapping("/payment")
     public String payment (@RequestParam("stripeToken") String amm,@RequestParam("stripeEmail") String curr)
     {
-        System.out.println("FUCK THE MONETARY SYSTEM");
+        System.out.println("THE MONETARY SYSTEM");
         System.out.println(amm);
         System.out.println(curr);
         return "redirect:/admin/";
