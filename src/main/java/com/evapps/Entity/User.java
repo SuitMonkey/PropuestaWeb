@@ -53,7 +53,7 @@ public class User implements Serializable{
         this.setCity(city);
         this.setPassword(password);
         this.setRole(role);
-        this.setStatus(AccountStatus.SUSPENDED); // Changes once receive confirmation email
+        this.setStatus(AccountStatus.ACTIVE); // Changes once receive confirmation email
     }
 
     public User(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission role, AccountStatus status, String id, boolean rnc) {
@@ -65,7 +65,7 @@ public class User implements Serializable{
         this.setCity(city);
         this.setPassword(password);
         this.setRole(role);
-        this.setStatus(AccountStatus.SUSPENDED); // Changes once receive confirmation email
+        this.setStatus(AccountStatus.ACTIVE); // Changes once receive confirmation email
         this.setId(id);
         this.setRnc(rnc);
     }
