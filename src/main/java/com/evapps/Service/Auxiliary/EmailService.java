@@ -17,7 +17,7 @@ public class EmailService {
 
         Email from = new Email("management@amazonplatano.com");
         Email to = new Email(emailTo);
-        Content content = new Content("text/plain", theContent+"\n\n\nEmail Service by Amazon Platano");
+        Content content = new Content("text/plain", theContent+"\n\n\nEmail Service by Atlantic Shop");
         Mail mail = new Mail(from, Subject, to, content);
 
         SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
@@ -42,7 +42,7 @@ public class EmailService {
 
         String content = "Thanks for your order!\n\n"+"Order#"+receipt.getFiscalCode();
         return sendEmail(receipt.getUser().getEmail(),
-                "Order Confirmation from platano",
+                "Order Confirmation from atlantic",
                 content);
 
     }
@@ -50,9 +50,13 @@ public class EmailService {
     public boolean sendUserRegistrationConfirmation(User user)
     {
 
-        String content = "Welcome to amazon platano "+user.getFullName()+"!!";
+        String content = "Welcome to atlantic shop "+user.getFullName()+"!!\n\n" +
+                "Here are your credentials:\n\n" +
+                "Email: "+ user.getEmail() + "\n" +
+                "Password: " + user.getPassword() + "\n" +
+                "Enter now: " + "localhost:8090 " + "copying this in your browser URL.";
         return sendEmail(user.getEmail(),
-                "Welcome to platano!",
+                "Welcome to Atlantic Shop!",
                 content);
 
     }

@@ -9,6 +9,7 @@ import com.evapps.Repository.HistoryRepository;
 import com.evapps.Repository.ProductRepository;
 import com.evapps.Repository.ReceiptRepository;
 import com.evapps.Repository.UserRepository;
+import com.evapps.Service.Auxiliary.EmailService;
 import com.evapps.Service.Auxiliary.EncryptionService;
 import com.evapps.Tools.Enums.Permission;
 import freemarker.template.utility.NullArgumentException;
@@ -105,8 +106,10 @@ public class CreateDataService
             throw new IllegalArgumentException("This user Account already exist");
 
         try {
-            User user = userRepository.save(new User(email, firstName, lastName,  shippingAddress, country, city,encryptionService.encryptPassword(password), permission));
+            User user = userRepository.save(new User(email, firstName, lastName,  shippingAddress, country, city,password, permission));
             historyRepository.save(new History(user)); // Creating the users history
+            EmailService es = new EmailService();
+            es.sendUserRegistrationConfirmation(user);
             return user;
         } catch (PersistenceException exp){
             throw new PersistenceException("Persistence Error --> " + exp.getMessage());

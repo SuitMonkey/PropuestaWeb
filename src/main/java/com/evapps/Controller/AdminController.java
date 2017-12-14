@@ -165,8 +165,6 @@ public class AdminController implements ErrorController {
         try {
             CDS.registerNewUser(email.toLowerCase(), firstName.toLowerCase(), lastName.toLowerCase(), shippingAddress,country,city, password,per );
 
-            // TODO: Send confirmation email
-
             return "redirect:/admin/users";
         } catch (Exception exp){
             exp.printStackTrace();
