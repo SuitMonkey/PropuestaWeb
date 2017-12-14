@@ -93,7 +93,7 @@ public class ReadDataService {
 
     public List<Receipt> findRegisteredTransactionByStatus(OrderStatus status) { return receiptRepository.findByOrderStatus(status); }
 
-    public List<User> findRegisteredAccountsByStatus(AccountStatus status) { return userRepository.findByAccountStatus(status); }
+    public List<User> findRegisteredAccountsByDepartment(String department) { return userRepository.findByDepartment(department); }
     // TODO: Add specific searches as the need comes
 
     // Auxiliary Functions

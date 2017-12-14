@@ -35,6 +35,8 @@ public class User implements Serializable{
     @Column(columnDefinition = "bytea")
     private Byte[] photo;
 
+    private String department;
+
     private String id;
     private boolean rnc;
 
@@ -44,7 +46,7 @@ public class User implements Serializable{
 
     }
 
-    public User(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission role){
+    public User(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission role, String departament){
         this.setEmail(email.toLowerCase());
         this.setFirstName(firstName.toLowerCase());
         this.setLastName(lastName.toUpperCase());
@@ -53,10 +55,11 @@ public class User implements Serializable{
         this.setCity(city);
         this.setPassword(password);
         this.setRole(role);
+        this.setDepartment(departament);
         this.setStatus(AccountStatus.ACTIVE); // Changes once receive confirmation email
     }
 
-    public User(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission role, AccountStatus status, String id, boolean rnc) {
+    public User(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission role, String department, String id, boolean rnc) {
         this.setEmail(email.toLowerCase());
         this.setFirstName(firstName.toLowerCase());
         this.setLastName(lastName.toUpperCase());
@@ -68,6 +71,7 @@ public class User implements Serializable{
         this.setStatus(AccountStatus.ACTIVE); // Changes once receive confirmation email
         this.setId(id);
         this.setRnc(rnc);
+        this.setDepartment(department);
     }
 
     //Getters and Setters
@@ -181,5 +185,13 @@ public class User implements Serializable{
 
     public void setRnc(boolean rnc) {
         this.rnc = rnc;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }

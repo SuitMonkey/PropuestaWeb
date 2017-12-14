@@ -12,7 +12,7 @@ import java.io.IOException;
 public class EmailService {
 
 
-    public boolean sendEmail(String emailTo, String Subject, String theContent)
+    public boolean sendEmail(String emailTo, String Subject, String theContent, Attachments attachments)
     {
 
         Email from = new Email("management@atlanticshop.com");
@@ -20,8 +20,12 @@ public class EmailService {
         Content content = new Content("text/plain", theContent+"\n\n\nEmail Service by Atlantic Shop");
         Mail mail = new Mail(from, Subject, to, content);
 
-//        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
-        SendGrid sg = new SendGrid("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");
+        if(attachments != null){
+            mail.addAttachments(attachments);
+        }
+
+        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API"));
+//        SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
@@ -31,6 +35,7 @@ public class EmailService {
             System.out.println("Sengrid Status Code:"+response.getStatusCode());
             System.out.println("Sendgrid Errpr Body:"+response.getBody());
             System.out.println("Sendgrid Headers:"+response.getHeaders());
+            System.out.println("Delivered to: " + emailTo);
         } catch (IOException ex) {
             System.out.println("ERROR WITH THE EMAIL SERVER, CONTAC YOUR ADMIN");
             return false;
@@ -44,7 +49,28 @@ public class EmailService {
         String content = "Thanks for your order!\n\n"+"Order#"+receipt.getFiscalCode();
         return sendEmail(receipt.getUser().getEmail(),
                 "Order Confirmation from atlantic",
-                content);
+                content,null);
+
+    }
+
+    public boolean sendStorageConfirmationEmail(Receipt receipt, User user)
+    {
+        Attachments attachments = new Attachments();
+
+        String content = "Guys, you have a delivery!\n\n"+"Order#"+receipt.getFiscalCode() + "\n\n" +
+                "For: " + receipt.getUser().getFullName() + "\n\n" +
+                "To: " + receipt.getUser().getShippingAddress() + ", " + receipt.getUser().getCity() +
+                ", " + receipt.getUser().getCountry() + ".";
+
+//        attachments.setContent();
+        attachments.setType("application/pdf");
+        attachments.setFilename("Receipt.pdf");
+        attachments.setDisposition("attachment");
+        attachments.setContentId("Balance Sheet");
+
+        return sendEmail(user.getEmail(),
+                "Order Confirmation for delivery!",
+                content,attachments);
 
     }
 
@@ -58,7 +84,7 @@ public class EmailService {
                 "Enter now: by copying " + "'localhost:8090'" + " in your browser URL.";
         return sendEmail(user.getEmail(),
                 "Welcome to Atlantic Shop!",
-                content);
+                content,null);
 
     }
 

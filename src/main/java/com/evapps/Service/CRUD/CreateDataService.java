@@ -103,13 +103,13 @@ public class CreateDataService
     }
 
     // User and History Creation
-    public User registerNewUser(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission permission, String id, boolean valorF) throws Exception{
+    public User registerNewUser(String email, String firstName, String lastName, String shippingAddress, String country, String city, String password, Permission permission, String id, boolean valorF, String departament) throws Exception{
 
         if (isEmailAddressTaken(email))
             throw new IllegalArgumentException("This user Account already exist");
 
         try {
-            User user = userRepository.save(new User(email, firstName, lastName,  shippingAddress, country, city,password, permission, AccountStatus.ACTIVE,id,valorF));
+            User user = userRepository.save(new User(email, firstName, lastName,  shippingAddress, country, city,password, permission, departament,id,valorF));
             historyRepository.save(new History(user)); // Creating the users history
             emailService.sendUserRegistrationConfirmation(user);
             return user;

@@ -1,9 +1,9 @@
-INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc)
-VALUES ('dj@gmail.com', 'Djidjely', 'Siclait', '81dc9bdb52d04dc20036dbd8313ed055', 0, 'nowhere', 'nowhere', 'nowhere', 0,false);
+INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc,department)
+VALUES ('dj@gmail.com', 'Djidjely', 'Siclait', '81dc9bdb52d04dc20036dbd8313ed055', 0, 'nowhere', 'nowhere', 'nowhere', 0,false,'ADMIN');
 -- INSERT INTO history (history_id, user_email) VALUES (1, 'dj@gmail.com');
 
-INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc)
-VALUES ('ev@gmail.com', 'Eduardo', 'Veras', '81dc9bdb52d04dc20036dbd8313ed055', 0, 'nowhere', 'nowhere', 'nowhere', 0,false);
+INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc,department)
+VALUES ('fcaceres@avathartech.com', 'Francis', 'Caceres', '1234', 0, 'nowhere', 'nowhere', 'nowhere', 0,false,'STORAGE');
 -- INSERT INTO history (history_id, user_email) VALUES (2, 'ev@gmail.com');
 
 
@@ -14,14 +14,14 @@ INSERT INTO items (product_id, product_description, product_in_stock, product_na
 VALUES (5, 'Women chique couture lace bra', 45, 'Fearless Brasier', 80.99, 'Victoria Secret');
 
 
-INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc)
-VALUES ('eva@gmail.com', 'Eva', 'Soraya', '81dc9bdb52d04dc20036dbd8313ed055', 2, 'Villa Olga', 'Santiago', 'Dominican Republic', 0,false);
+INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc,department)
+VALUES ('eva@gmail.com', 'Eva', 'Soraya', '81dc9bdb52d04dc20036dbd8313ed055', 2, 'Villa Olga', 'Santiago', 'Dominican Republic', 0,false,'CONSUMER');
 -- INSERT INTO history (history_id, user_email) VALUES (8, 'eva@gmail.com');
 -- INSERT INTO history_shopping_cart (history_history_id, shopping_cart_product_id) VALUES (8,4);
 -- INSERT INTO history_shopping_cart (history_history_id, shopping_cart_product_id) VALUES (8,5);
 
-INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc)
-VALUES ('paulina@gmail.com', 'Paulina', 'La Mejor', '81dc9bdb52d04dc20036dbd8313ed055', 2, 'Rue 3', 'Paris', 'France', 0,false);
+INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc,department)
+VALUES ('paulina@gmail.com', 'Paulina', 'La Mejor', '81dc9bdb52d04dc20036dbd8313ed055', 2, 'Rue 3', 'Paris', 'France', 0,false,'CONSUMER');
 -- INSERT INTO history (history_id, user_email) VALUES (9, 'paulina@gmail.com');
 -- INSERT INTO history_shopping_cart (history_history_id, shopping_cart_product_id) VALUES (9,4);
 -- INSERT INTO history_shopping_cart (history_history_id, shopping_cart_product_id) VALUES (9,5);

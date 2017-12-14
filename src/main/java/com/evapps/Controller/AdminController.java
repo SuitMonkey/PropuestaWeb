@@ -153,7 +153,7 @@ public class AdminController implements ErrorController {
             return "redirect:/login";
 
         Permission per;
-        if (role.equals("ADMIN"))
+        if (role.equals("ADMIN") || role.equals("STORAGE"))
         {
             per = Permission.ADMIN;
         }
@@ -163,7 +163,7 @@ public class AdminController implements ErrorController {
         }
 
         try {
-            CDS.registerNewUser(email.toLowerCase(), firstName.toLowerCase(), lastName.toLowerCase(), shippingAddress,country,city, password,per,rnc,true);
+            CDS.registerNewUser(email.toLowerCase(), firstName.toLowerCase(), lastName.toLowerCase(), shippingAddress,country,city, password,per,rnc,true,role);
 
             return "redirect:/admin/users";
         } catch (Exception exp){
