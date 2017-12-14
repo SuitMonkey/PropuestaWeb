@@ -36,7 +36,6 @@
     <input type="hidden" name="notify_url" value="localhost:8090/products>
 
 
-
     <!-- Display the payment button. -->
     <input type="image" name="submit" border="0"
            src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png"

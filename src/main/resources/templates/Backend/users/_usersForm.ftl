@@ -8,7 +8,7 @@
 
         <div class="x_content">
             <br />
-            <form action="/register" METHOD="POST" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+            <form action="/admin/users" METHOD="POST" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                 <div class="form-group item">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"><@spring.message "email" /> <span class="required">*</span>
