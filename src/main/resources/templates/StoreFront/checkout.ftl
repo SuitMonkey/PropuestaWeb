@@ -31,10 +31,9 @@
     <input type="hidden" name="item_name" value="Atlantic Shop Stuff">
     <input type="hidden" name="amount" value="${total}">
     <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" value="localhost:8090/download_pdf" name="return">
+    <input type="hidden" value="http://localhost:8090/checkout" name="return">
     <input type="hidden" name="custom" value=""/>
-    <input type="hidden" name="notify_url" value="localhost:8090/products>
-
+    <#--<input type="hidden" name="notify_url" value="localhost:8090/confirm_transaction>-->
 
     <!-- Display the payment button. -->
     <input type="image" name="submit" border="0"

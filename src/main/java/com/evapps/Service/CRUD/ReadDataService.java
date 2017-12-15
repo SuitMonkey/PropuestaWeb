@@ -65,6 +65,7 @@ public class ReadDataService {
 
     public List<Receipt> findAllRegisteredTransactions() { return receiptRepository.findAll(); }
 
+
     public List<User> findAllRegisteredAccounts() { return userRepository.findAll(); }
 
     // Specific Search

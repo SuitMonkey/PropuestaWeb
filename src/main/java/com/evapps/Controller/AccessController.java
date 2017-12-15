@@ -101,10 +101,11 @@ public class AccessController {
 
             Map<String, Object> params = new HashMap<>();
             params.put("FiscalCode", fiscalCode);
+            params.put("rnc", RDS.getCurrentLoggedUser().getId());
 
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 
-            JRDataSource data = new JRMapArrayDataSource(fetchTransactionDataSource());
+            JRDataSource data = new JRMapArrayDataSource(fetchTransactionDataSource(fiscalCode));
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, data/*new JREmptyDataSource()*/);
 
@@ -296,6 +297,7 @@ public class AccessController {
             }
             
             history.setShoppingCart(new HashSet<>()); // Clearing Shopping cart
+            history.setAmount(new ArrayList<>()); // Clearing Shopping cart
 
             //Completing transaction
             Receipt receipt = CDS.registerTransaction(RDS.getCurrentLoggedUser().getEmail(), productList, amount, total);
@@ -431,22 +433,21 @@ public class AccessController {
         return bytes;
     }
 
-    private Map[] fetchTransactionDataSource(){
-        HashMap[] rows = new HashMap[RDS.findAllRegisteredTransactions().size()];
+    private Map[] fetchTransactionDataSource(String fiscalCode){
+        HashMap[] rows = new HashMap[1];
         int count = 0;
 
-        for (Receipt r:
-                RDS.findAllRegisteredTransactions()) {
-            HashMap data = new HashMap();
-            data.put("fiscal", r.getFiscalCode());
-            data.put("user_email", r.getUser().getEmail());
-            data.put("user_name", r.getUser().getFullName());
-            data.put("time", r.getTransactionDate().toString().substring(0, r.getTransactionDate().toString().length() - 2));
-            data.put("total", "$" + r.getTotal().toString());
-            data.put("content", formatReceiptBody(r.getProductList(), r.getAmount()));
+        Receipt r = RDS.findRegisteredTransaction(fiscalCode);
+        HashMap data = new HashMap();
+        data.put("fiscal", r.getUser().getId());
+        data.put("user_email", r.getUser().getEmail());
+        data.put("user_name", r.getUser().getFirstName());
+        data.put("time", r.getTransactionDate().toString().substring(0, r.getTransactionDate().toString().length() - 2));
+        data.put("total", "$" + r.getTotal().toString());
+        data.put("content", formatReceiptBody(r.getProductList(), r.getAmount()));
 
-            rows[count++] = data;
-        }
+        rows[0] = data;
+
 
         return rows;
     }

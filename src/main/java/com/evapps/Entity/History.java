@@ -12,7 +12,7 @@ import java.util.Set;
 public class History implements Serializable {
     // Attributes
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Integer historyId;
     @OneToOne
     private User user;
@@ -32,6 +32,7 @@ public class History implements Serializable {
         this.setBrowsingHistory(new HashSet<>());
         this.setShoppingCart(new HashSet<>());
         this.setAmount(new ArrayList<>());
+        System.out.println(this.historyId);
     }
 
     // Getters and Setters

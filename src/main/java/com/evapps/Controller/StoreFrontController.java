@@ -35,10 +35,10 @@ public class StoreFrontController {
 
         model.addAttribute("user", RDS.getCurrentLoggedUser());
 
-        if(RDS.getCurrentLoggedUser() != null)
+        if(RDS.getCurrentLoggedUser() != null) {
             model.addAttribute("shoppingCart", RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail()).getShoppingCart());
-        else
-            model.addAttribute("shoppingCart", new HashSet<Product>()); // empty cart
+        }else
+                 model.addAttribute("shoppingCart", new HashSet<Product>()); // empty cart
 
         model.addAttribute("selection", RDS.findAllRegisteredProducts());
 
