@@ -268,7 +268,7 @@ public class AccessController {
 
 
 
-    @GetMapping("/summary_transaction")
+    @PostMapping("/summary_transaction")
     public ModelAndView buyItemsInCart2(Model model){
 
         if (!RDS.isUserLoggedIn())
@@ -301,9 +301,10 @@ public class AccessController {
             history.setShoppingCart(new HashSet<>()); // Clearing Shopping cart
             history.setAmount(new ArrayList<>()); // Clearing Shopping cart
 
-
+            model.addAttribute("fiscalCode",receipt.getFiscalCode());
             // TODO: Send email to admin for order confirmation
-            return new ModelAndView("/StoreFront/summary?fiscalCode=" + receipt.getFiscalCode());
+            return new ModelAndView("StoreFront/summary");
+//            return new ModelAndView("StoreFront/summary?fiscalCode=" + receipt.getFiscalCode());
 
             //return "redirect:/myHistory";
         } catch (Exception exp){

@@ -32,7 +32,7 @@
     <input type="hidden" name="amount" value="${total}">
     <input type="hidden" name="currency_code" value="USD">
     <input type="hidden" value="http://localhost:8090/summary_transaction" name="return">
-    <input type="hidden" name="custom" value=""/>
+    <input type="hidden" name="rm" value="2"/>
     <#--<input type="hidden" name="notify_url" value="localhost:8090/confirm_transaction>-->
 
     <!-- Display the payment button. -->
