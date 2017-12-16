@@ -31,7 +31,7 @@
     <input type="hidden" name="item_name" value="Atlantic Shop Stuff">
     <input type="hidden" name="amount" value="${total}">
     <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" value="http://localhost:8090/checkout" name="return">
+    <input type="hidden" value="http://localhost:8090/summary_transaction" name="return">
     <input type="hidden" name="custom" value=""/>
     <#--<input type="hidden" name="notify_url" value="localhost:8090/confirm_transaction>-->
 
@@ -336,9 +336,10 @@
                                     <div class="aa-payment-method">
                                         <label for="cashdelivery"><input type="radio" id="cashdelivery" name="optionsRadios"> Cash on Delivery </label>
                                         <label for="paypal"><input type="radio" id="paypal" name="optionsRadios" checked> Via Paypal </label>
+                                        <br>
                                         <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark">
                                         <input type="button" value="Place Order" class="aa-browse-btn" onclick="submitForm1()">
-                                        <input type="button" value="Get Receip" class="aa-browse-btn" onclick="submitForm2()">
+                                        <#--<input type="button" value="Get Receip" class="aa-browse-btn" onclick="submitForm2()">-->
                                     </div>
                                 </#if>
                                 </div>
@@ -356,9 +357,9 @@
         document.getElementById("form1").submit();
     };
 
-    submitForm2 = function(){
-        document.getElementById("form2").submit();
-    }
+//    submitForm2 = function(){
+//        document.getElementById("form2").submit();
+//    }
 </script>
 <!-- / Cart view section -->
 <#include "layouts/footer.ftl">

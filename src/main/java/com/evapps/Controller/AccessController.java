@@ -267,11 +267,26 @@ public class AccessController {
     }
 
 
-    @PostMapping("/confirm_transaction")
-    public String buyItemsInCart(){
+
+    @GetMapping("/summary_transaction")
+    public ModelAndView buyItemsInCart2(Model model){
 
         if (!RDS.isUserLoggedIn())
-            return "redirect:/login";
+            return new ModelAndView("/redirect:/login");
+
+        /////////////////////////////////////////////////////////
+        if(RDS.getCurrentLoggedUser() != null)
+            model.addAttribute("shoppingCart", RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail()).getShoppingCart());
+        else
+            model.addAttribute("shoppingCart", new HashSet<Product>()); // empty cart
+
+        float total=0;
+        for(Product i : RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail()).getShoppingCart())
+        {
+            total+=i.getProductPrice();
+        }
+        model.addAttribute("total",total);
+        ////////////////////////////////////////////////////////
 
         try {
             // Fetching shoppingCart
@@ -279,10 +294,33 @@ public class AccessController {
             Set<Product> shoppingCart = history.getShoppingCart(); // Fetching the user's shoppingCart
             ArrayList<Integer> amount = history.getAmount(); // Fetching the amount bought of each product
 
-            ArrayList<Integer> productList = new ArrayList<>();
-            Float total = 0.00f;
-            int count = 0;
 
+           Receipt receipt = helperAmount(shoppingCart,amount);
+
+
+            history.setShoppingCart(new HashSet<>()); // Clearing Shopping cart
+            history.setAmount(new ArrayList<>()); // Clearing Shopping cart
+
+
+            // TODO: Send email to admin for order confirmation
+            return new ModelAndView("/StoreFront/summary?fiscalCode=" + receipt.getFiscalCode());
+
+            //return "redirect:/myHistory";
+        } catch (Exception exp){
+            exp.printStackTrace();
+        }
+
+        return new ModelAndView("/redirect:/");
+    }
+
+    private Receipt helperAmount(Set<Product> shoppingCart,ArrayList<Integer> amount){
+        ArrayList<Integer> productList = new ArrayList<>();
+        Float total = 0.00f;
+        int count = 0;
+        Receipt receipt = null;
+
+
+        try{
             for (Product product: shoppingCart) {
                 if (product.getProductInStock() > 0){
                     // Saving transaction registry
@@ -295,15 +333,35 @@ public class AccessController {
                     UDS.updateRegisteredProduct(product);
                 }
             }
-            
-            history.setShoppingCart(new HashSet<>()); // Clearing Shopping cart
-            history.setAmount(new ArrayList<>()); // Clearing Shopping cart
 
-            //Completing transaction
-            Receipt receipt = CDS.registerTransaction(RDS.getCurrentLoggedUser().getEmail(), productList, amount, total);
+            receipt = CDS.registerTransaction(RDS.getCurrentLoggedUser().getEmail(), productList, amount, total);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return receipt;
+    }
+
+    @PostMapping("/confirm_transaction")
+    public String buyItemsInCart(@RequestParam("fiscalCode") String fiscalCode){
+
+        if (!RDS.isUserLoggedIn())
+            return "redirect:/login";
+
+        try {
+//            // Fetching shoppingCart
+//            History history = RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail());
+//            Set<Product> shoppingCart = history.getShoppingCart(); // Fetching the user's shoppingCart
+//            ArrayList<Integer> amount = history.getAmount(); // Fetching the amount bought of each product
+//
+//            Receipt receipt = helperAmount(shoppingCart,amount);
+//
+//            history.setShoppingCart(new HashSet<>()); // Clearing Shopping cart
+//            history.setAmount(new ArrayList<>()); // Clearing Shopping cart
 
             // TODO: Send email to admin for order confirmation
-            return "redirect:/download_pdf/transaction?fiscalCode=" + receipt.getFiscalCode();
+            return "redirect:/download_pdf/transaction?fiscalCode=" + fiscalCode;
 
             //return "redirect:/myHistory";
         } catch (Exception exp){

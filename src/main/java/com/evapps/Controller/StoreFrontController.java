@@ -80,7 +80,7 @@ public class StoreFrontController {
             model.addAttribute("shoppingCart", RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail()).getShoppingCart());
         else
             model.addAttribute("shoppingCart", new HashSet<Product>()); // empty cart
-        float total=0;
+        double total=0.0;
         for(Product i : RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail()).getShoppingCart())
         {
             total+=i.getProductPrice();
