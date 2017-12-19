@@ -27,6 +27,7 @@ public class Receipt implements Serializable {
     private ArrayList<Integer> productList;
     private Float total;
     private OrderStatus status;
+    private String NCF;
 
     // Constructors
     public Receipt(){
@@ -41,6 +42,10 @@ public class Receipt implements Serializable {
         this.setAmount(amount);
         this.setTotal(total);
         this.setStatus(OrderStatus.PENDING);
+        if(user.isRnc())
+            this.setNCF("A020010130100000123");
+        else
+            this.setNCF("A020010130200000123");
     }
 
     public String getFiscalCode() {
@@ -97,5 +102,13 @@ public class Receipt implements Serializable {
 
     public void setAmount(ArrayList<Integer> amount) {
         this.amount = amount;
+    }
+
+    public String getNCF() {
+        return NCF;
+    }
+
+    public void setNCF(String NCF) {
+        this.NCF = NCF;
     }
 }

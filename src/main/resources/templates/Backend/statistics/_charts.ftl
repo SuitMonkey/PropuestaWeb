@@ -2,49 +2,30 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                Platano Statistics
+                Atlantic Statistics
             </h2>
         </div>
         <div class="x_content">
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <canvas id="productV"></canvas>
-            </div>
-
-            <br>
-
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <canvas id="purchaseS"></canvas>
-            </div>
-
-            <br>
-
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <canvas id="suppliers"></canvas>
-            </div>
-
-            <br>
-
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <canvas id="avePurchase"></canvas>
-            </div>
-
-            <br>
-
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <canvas id="items"></canvas>
-            </div>
 
             <script type="text/javascript">
-                google.charts.load('current', {'packages':['geochart','corechart','line',"calendar"]});
-                google.charts.setOnLoadCallback(drawProductViewBarChart());
-                google.charts.setOnLoadCallback(drawPurchaseBarChart());
-                google.charts.setOnLoadCallback(drawSupplierPieChart());
-                google.charts.setOnLoadCallback(drawAveragePurchaseBarChart());
-                google.charts.setOnLoadCallback(drawAverageItemBarChart());
 
-                function drawProductViewBarChart() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Product', 'Views', { role: "style" }],
+                // Load the Visualization API and the corechart package.
+                google.charts.load('current', {'packages':['corechart']});
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(drawChart);
+
+
+                // Callback that creates and populates a data table,
+                // instantiates the pie chart, passes in the data and
+                // draws it.
+                function drawChart() {
+
+                    // Create the data table.
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string','Product');
+                    data.addColumn('number','Views');
+                    data.addRows([
                     <#list productsView as product>
                         <#if product?is_last>
                                 [${product}]
@@ -54,20 +35,42 @@
                     </#list>
                     ]);
 
-                    var options = {
-                        title: 'Views per Products',
-                        'min-width':300,
-                        'min-height':300,
-                        legend: 'none'
-                    };
+                    // Set chart options
+                    var options = {'title':'Views per Products',
+                        'width':400,
+                        'height':300};
 
-                    var chart = new google.visualization.BarChart(document.getElementById('productV'));
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.PieChart(document.getElementById('productV'));
                     chart.draw(data, options);
                 }
 
-                function drawPurchaseBarChart() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Product', 'Units', { role: "style" }],
+            </script>
+
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                <div id="productV"></div>
+            </div>
+
+            <br>
+
+            <script type="text/javascript">
+
+                // Load the Visualization API and the corechart package.
+                google.charts.load('current', {'packages':['corechart']});
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(drawChart);
+
+                // Callback that creates and populates a data table,
+                // instantiates the pie chart, passes in the data and
+                // draws it.
+                function drawChart() {
+
+                    // Create the data table.
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string','Product');
+                    data.addColumn('number','Units');
+                    data.addRows([
                     <#list purchaseStatistics as purchase>
                         <#if purchase?is_last>
                                 [${purchase}]
@@ -77,16 +80,123 @@
                     </#list>
                     ]);
 
-                    var options = {
-                        title: 'Units Purchased per Product',
-                        'min-width':300,
-                        'min-height':300,
-                        legend: 'none'
-                    };
+                    // Set chart options
+                    var options = {'title':'Units Purchased per Product',
+                        'width':400,
+                        'height':300};
 
-                    var chart = new google.visualization.BarChart(document.getElementById('purchaseS'));
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.PieChart(document.getElementById('purchaseS'));
                     chart.draw(data, options);
                 }
+            </script>
+
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                <div id="purchaseS"></div>
+            </div>
+
+            <br>
+
+            <script type="text/javascript">
+
+                // Load the Visualization API and the corechart package.
+                google.charts.load('current', {'packages':['corechart']});
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(drawChart);
+
+                // Callback that creates and populates a data table,
+                // instantiates the pie chart, passes in the data and
+                // draws it.
+                function drawChart() {
+
+                    // Create the data table.
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string','Supplier');
+                    data.addColumn('number','Popularity');
+                    data.addRows([
+                    <#list supplierStatistics as supplier>
+                        <#if supplier?is_last>
+                                [${supplier}]
+                        <#else>
+                                [${supplier}],
+                        </#if>
+                    </#list>
+                    ]);
+
+                    // Set chart options
+                    var options = {'title':'Supplier Popularity Among Buyers',
+                        'width':400,
+                        'height':300};
+
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.PieChart(document.getElementById('suppliers'));
+                    chart.draw(data, options);
+                }
+            </script>
+
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                <div id="suppliers"></div>
+            </div>
+
+            <br>
+
+            <script type="text/javascript">
+
+                // Load the Visualization API and the corechart package.
+                google.charts.load('current', {'packages':['corechart']});
+
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.charts.setOnLoadCallback(drawChart);
+
+                // Callback that creates and populates a data table,
+                // instantiates the pie chart, passes in the data and
+                // draws it.
+                function drawChart() {
+
+                    // Create the data table.
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string','Supplier');
+                    data.addColumn('number','Popularity');
+                    data.addRows([
+                    <#list supplierStatistics as supplier>
+                        <#if supplier?is_last>
+                                [${supplier}]
+                        <#else>
+                                [${supplier}],
+                        </#if>
+                    </#list>
+                    ]);
+
+                    // Set chart options
+                    var options = {'title':'Supplier Popularity Among Buyers',
+                        'width':400,
+                        'height':300};
+
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.PieChart(document.getElementById('avePurchase'));
+                    chart.draw(data, options);
+                }
+            </script>
+
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                <div id="avePurchase"></div>
+            </div>
+
+            <br>
+
+            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                <div id="items"></div>
+            </div>
+
+            <script type="text/javascript">
+//                google.charts.load('current', {'packages':['corechart']});
+//                google.charts.setOnLoadCallback(drawProductViewBarChart());
+//                google.charts.setOnLoadCallback(drawPurchaseBarChart());
+//                google.charts.setOnLoadCallback(drawSupplierPieChart());
+//                google.charts.setOnLoadCallback(drawAveragePurchaseBarChart());
+//                google.charts.setOnLoadCallback(drawAverageItemBarChart());
+
 
                 function drawSupplierPieChart() {
                     var data = google.visualization.arrayToDataTable([

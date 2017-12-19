@@ -43,7 +43,8 @@ public class StatisticService {
 
             for (Integer i:
                  statistic.keySet())
-                buffer.add("'" + i.toString() + "--" + productRepository.findByProductId(i).getProductName() + "', " + statistic.get(i).toString() + ", 'color: #b87333'");
+                buffer.add("'" + i.toString() + "--" + productRepository.findByProductId(i).getProductName() + "', " + statistic.get(i).toString() );
+//                buffer.add("'" + i.toString() + "--" + productRepository.findByProductId(i).getProductName() + "', " + statistic.get(i).toString() + ", 'color: #b87333'");
 
             return buffer;
         } catch (Exception exp) {
@@ -65,7 +66,8 @@ public class StatisticService {
 
             for (Integer i:
                  statistic.keySet())
-                buffer.add("'" + i.toString() + "--" + productRepository.findByProductId(i).getProductName() + "', " + statistic.get(i).toString() + "', 'color: gold'");
+                buffer.add("'" + i.toString() + "--" + productRepository.findByProductId(i).getProductName() + "', " + statistic.get(i).toString() );
+//                buffer.add("'" + i.toString() + "--" + productRepository.findByProductId(i).getProductName() + "', " + statistic.get(i).toString() + ", 'color: gold'");
 
             return buffer;
         } catch (Exception exp) {
