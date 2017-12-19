@@ -9,6 +9,7 @@ import com.evapps.Repository.HistoryRepository;
 import com.evapps.Repository.ProductRepository;
 import com.evapps.Repository.ReceiptRepository;
 import com.evapps.Repository.UserRepository;
+import com.evapps.Tools.Enums.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,6 +90,28 @@ public class StatisticService {
             for (String supplier:
                  statistic.keySet())
                 buffer.add("'" + supplier + "', " + statistic.get(supplier).toString());
+
+            return buffer;
+
+        } catch (Exception exp) {
+            //
+        }
+
+        return null;
+    }
+
+    public ArrayList<Integer> shipStatistics(){
+
+        ArrayList<Integer> buffer = new ArrayList<>();
+        try {
+            int delivered=0,pending=0;
+
+            for(Receipt r : receiptRepository.findAll()){
+               if(r.getStatus() == OrderStatus.DELIVERED)delivered+=1;else pending+=1;
+            }
+
+            buffer.add(delivered);
+            buffer.add(pending);
 
             return buffer;
 

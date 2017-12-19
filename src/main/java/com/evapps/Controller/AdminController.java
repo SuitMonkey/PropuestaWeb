@@ -139,6 +139,9 @@ public class AdminController implements ErrorController {
         model.addAttribute("averagePurchase", SS.userAveragePurchaseByDollar());
         model.addAttribute("averageItems", SS.userAverageNumberOfItemPurchase());
 
+        model.addAttribute("pending", SS.shipStatistics().get(1));
+        model.addAttribute("delivered", SS.shipStatistics().get(0));
+
         return new ModelAndView("/Backend/statistics/statistics");
     }
 
@@ -279,8 +282,8 @@ public class AdminController implements ErrorController {
         return "redirect:/admin/inventory"; // TODO: Add error handling
     }
 
-    @PostMapping("/ship/{fiscalCode}")
-    public String markOrderAsShipped(@PathParam("fiscalCode") String fiscalCode){
+    @GetMapping("/ship/transaction")
+    public String markOrderAsShipped(@RequestParam("fiscalCode") String fiscalCode){
 
         if(!RDS.isUserLoggedIn())
             return "redirect:/login";
@@ -326,7 +329,7 @@ public class AdminController implements ErrorController {
         return "redirect:/admin/inventory"; // TODO: Add error handling
     }
 
-                                                                                                    // TODO: emailUser
+  // TODO: emailUser
 
     @PostMapping("/suspend_user")
     public String suspendUserAccount(@RequestParam("email") String email){

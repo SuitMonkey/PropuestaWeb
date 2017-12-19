@@ -32,7 +32,7 @@
                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Options
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">RE-STOCK</a></li>
+                                <li><a href="/ship/transaction?fiscalCode=${transaction.getFiscalCode()}">DELIVERED</a></li>
                                 <li><a href="#">EDIT</a></li>
                                 <li><a href="#">DELETE</a></li>
                             </ul>
