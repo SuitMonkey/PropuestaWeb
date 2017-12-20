@@ -153,8 +153,11 @@ public class StoreFrontController {
                     amount = new ArrayList<>(); // fail safe
 
                 // Adding to cart
-                shoppingCart.add(product);
-                amount.add(1);
+                if(!shoppingCart.contains(product)){
+                    shoppingCart.add(product);
+                    amount.add(1);
+                }
+
                 history.setShoppingCart(shoppingCart);
                 history.setAmount(amount);
 

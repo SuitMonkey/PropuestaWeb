@@ -147,8 +147,8 @@ public class AdminController implements ErrorController {
 
     // Posts
     @PostMapping("/admin/users")
-    public String register(@RequestParam("email") String email, @RequestParam("first") String firstName, @RequestParam("last") String lastName, @RequestParam("address") String shippingAddress,@RequestParam("state") String city, @RequestParam("country") String country,@RequestParam("password") String password, @RequestParam("role") String role,@RequestParam("RNC") String rnc,@RequestParam("valorFiscal") String valorF){
-        System.out.println(valorF);
+    public String register(@RequestParam("email") String email, @RequestParam("first") String firstName, @RequestParam("last") String lastName, @RequestParam("address") String shippingAddress,@RequestParam("state") String city, @RequestParam("country") String country,@RequestParam("password") String password, @RequestParam("role") String role,@RequestParam("RNC") String rnc,@RequestParam("valorFiscal") String isPersonaJuridica){
+        System.out.println("consumidor final: "+isPersonaJuridica);
         if(!RDS.isUserLoggedIn())
             return "redirect:/login";
 
@@ -166,7 +166,7 @@ public class AdminController implements ErrorController {
         }
 
         try {
-            CDS.registerNewUser(email.toLowerCase(), firstName.toLowerCase(), lastName.toLowerCase(), shippingAddress,country,city, password,per,rnc,true,role);
+            CDS.registerNewUser(email.toLowerCase(), firstName.toLowerCase(), lastName.toLowerCase(), shippingAddress,country,city, password,per,rnc,Boolean.parseBoolean(isPersonaJuridica),role);
 
             return "redirect:/admin/users";
         } catch (Exception exp){

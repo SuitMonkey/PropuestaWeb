@@ -101,7 +101,14 @@ public class AccessController {
 
             Map<String, Object> params = new HashMap<>();
             params.put("FiscalCode", fiscalCode);
-            params.put("rnc", RDS.getCurrentLoggedUser().getId());
+
+            if(RDS.getCurrentLoggedUser().isRnc()){
+                params.put("PersonType", "RNC");
+                params.put("NCF", "A010010050100000500");
+            }else {
+                params.put("PersonType", "ID");
+                params.put("NCF", "A010010050200000500");
+            }
 
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 
@@ -293,13 +300,15 @@ public class AccessController {
             History history = RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail());
             Set<Product> shoppingCart = history.getShoppingCart(); // Fetching the user's shoppingCart
             ArrayList<Integer> amount = history.getAmount(); // Fetching the amount bought of each product
-
+            Set<Product> browsingHistory = history.getBrowsingHistory();
 
            Receipt receipt = helperAmount(shoppingCart,amount);
 
 
             history.setShoppingCart(new HashSet<>()); // Clearing Shopping cart
             history.setAmount(new ArrayList<>()); // Clearing Shopping cart
+
+            UDS.updateRegisteredUserHistory(history);
 
             model.addAttribute("fiscalCode",receipt.getFiscalCode());
             // TODO: Send email to admin for order confirmation
@@ -499,6 +508,7 @@ public class AccessController {
         Receipt r = RDS.findRegisteredTransaction(fiscalCode);
         HashMap data = new HashMap();
         data.put("fiscal", r.getUser().getId());
+        data.put("id", r.getUser().getId());
         data.put("user_email", r.getUser().getEmail());
         data.put("user_name", r.getUser().getFirstName());
         data.put("time", r.getTransactionDate().toString().substring(0, r.getTransactionDate().toString().length() - 2));
@@ -506,8 +516,9 @@ public class AccessController {
         data.put("content", formatReceiptBody(r.getProductList(), r.getAmount()));
 
         rows[0] = data;
-
-
+        History h = RDS.findRegisteredUserHistory(RDS.getCurrentLoggedUser().getEmail());
+        h.setAmount(new ArrayList<>());
+        h.setShoppingCart(new HashSet<>());
         return rows;
     }
 

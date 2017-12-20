@@ -1,6 +1,6 @@
 INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc,department,id)
-VALUES ('dj@gmail.com', 'Djidjely', 'Siclait', '1234', 0, 'nowhere', 'nowhere', 'nowhere', 0,false,'ADMIN',123456789);
-INSERT INTO history (history_id, user_email) VALUES (1, 'dj@gmail.com');
+VALUES ('j@gmail.com', 'Jesus', 'Henriquez', '1234', 0, 'nowhere', 'nowhere', 'nowhere', 0,false,'ADMIN',123456789);
+INSERT INTO history (history_id, user_email) VALUES (1, 'j@gmail.com');
 
 INSERT INTO users (email, first_name, last_name, password, role, shipping_address, city, country, status,rnc,department)
 VALUES ('fcaceres@avathartech.com', 'Francis', 'Caceres', '1234', 0, 'nowhere', 'nowhere', 'nowhere', 0,false,'STORAGE');

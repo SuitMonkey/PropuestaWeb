@@ -80,7 +80,13 @@
 
                 <div class="form-group item">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12"><@spring.message "ValorFiscal" /> <span class="required">*</span></label>
-                    <input type="checkbox" name="valorFiscal" id="valorFiscal">
+                    <div class="aa-checkout-single-bill">
+                        <select name="valorFiscal">
+                            <option value="" disabled selected hidden>Please Choose...</option>
+                            <option value="false">Persona Fisica</option>
+                            <option value="true">Persona Judidica</option>
+                        </select>
+                    </div>
                 </div>
 
 

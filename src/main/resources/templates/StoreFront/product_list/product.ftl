@@ -85,8 +85,8 @@
                                         <INPUT TYPE="hidden" name="cmd" value="_xclick">
                                         <INPUT TYPE="hidden" name="business" value="jesus9528-facilitator@hotmail.com">
                                         <INPUT TYPE="hidden" name="currency_code" value="USD">
-                                        <INPUT TYPE="hidden" name="return" value="http://localhost:8090/pago/success">
-                                        <INPUT TYPE="hidden" name="cancel_return" value="http://localhost:8090/pago/cancel">
+                                        <input type="hidden" name="return" value="http://localhost:8090/summary_transaction">
+                                        <INPUT TYPE="hidden" name="cancel_return" value="http://localhost:8090/">
                                         <INPUT TYPE="hidden" name="item_name" value="${product.getProductName()}">
                                         <INPUT TYPE="hidden" name="rm" value="2">
                                         <INPUT TYPE="hidden" name="amount" value="${product.getProductPrice()}">
