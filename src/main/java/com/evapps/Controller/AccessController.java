@@ -311,6 +311,8 @@ public class AccessController {
             UDS.updateRegisteredUserHistory(history);
 
             model.addAttribute("fiscalCode",receipt.getFiscalCode());
+
+            createPDF(receipt.getFiscalCode());
             // TODO: Send email to admin for order confirmation
             return new ModelAndView("StoreFront/summary");
 //            return new ModelAndView("StoreFront/summary?fiscalCode=" + receipt.getFiscalCode());
@@ -323,6 +325,43 @@ public class AccessController {
         return new ModelAndView("/redirect:/");
     }
 
+    private void createPDF(String fiscalCode){
+        InputStream jasperStream;
+
+        try {
+            jasperStream = new FileInputStream(new File("").getAbsolutePath().concat("\\src\\main\\resources\\templates\\jasperreports\\transaction.jasper"));
+
+            if (jasperStream == null){
+                JasperCompileManager.compileReportToFile(new File("").getAbsolutePath().concat("\\src\\main\\resources\\templates\\jasperreports\\transaction.jrxml"), new File("").getAbsolutePath().concat("\\src\\main\\resources\\templates\\jasperreports\\transaction.jasper"));
+                jasperStream = this.getClass().getResourceAsStream(new File("").getAbsolutePath().concat("\\src\\main\\resources\\templates\\jasperreports\\transaction.jasper"));
+            }
+
+            Map<String, Object> params = new HashMap<>();
+            params.put("FiscalCode", fiscalCode);
+
+            if(RDS.getCurrentLoggedUser().isRnc()){
+                params.put("PersonType", "RNC");
+                params.put("NCF", "A010010050100000500");
+            }else {
+                params.put("PersonType", "ID");
+                params.put("NCF", "A010010050200000500");
+            }
+
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+
+            JRDataSource data = new JRMapArrayDataSource(fetchTransactionDataSource(fiscalCode));
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, data/*new JREmptyDataSource()*/);
+
+
+            final OutputStream outputStream = new FileOutputStream(new File("").getAbsolutePath().concat("\\src\\main\\resources\\templates\\jasperreports\\report.pdf"));
+
+                JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+        } catch (Exception exp){
+            exp.printStackTrace();
+            System.out.println(exp.getMessage());
+        }
+    }
     private Receipt helperAmount(Set<Product> shoppingCart,ArrayList<Integer> amount){
         ArrayList<Integer> productList = new ArrayList<>();
         Float total = 0.00f;
